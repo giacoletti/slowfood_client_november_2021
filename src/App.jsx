@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Products from "./modules/Products";
-import Orders from "./modules/orders";
+import Orders from "./modules/Orders";
 
 const App = () => {
   const [products, setProducts] = useState([]);

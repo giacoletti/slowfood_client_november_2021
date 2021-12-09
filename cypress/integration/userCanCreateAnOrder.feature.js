@@ -20,6 +20,9 @@ describe('Clicking on a "Add to Order" button for a specific product', () => {
   });
 
   it('is expected to render a message', () => {
-
+    cy.get('[data-cy=message-box]').should(
+      'contain.text',
+      'Pizza was added to your order!'
+    );
   });
 });

@@ -5,12 +5,12 @@ describe('A user that visits the application', () => {
       'GET',
       '**/api/products',
       { fixture: 'products.json' }
-    ).as('getProducts');
+    ).as('Products.index');
     cy.visit('/');
   });
 
   it('is expected to make a network call with status 200', () => {
-    cy.wait('@getProducts').its('response.statusCode').should('eq', 200);
+    cy.wait('@Products.index').its('response.statusCode').should('eq', 200);
   });
 
   it('is expected to see a collection of 3 products', () => {

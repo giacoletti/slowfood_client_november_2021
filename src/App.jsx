@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Products from './modules/Products';
+import Orders from './modules/Orders';
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -11,8 +12,10 @@ const App = () => {
   }, []);
 
   const addToOrder = (id) => {
-    debugger;
     // we can now make a POST request to /api/orders
+    Orders.create(id, 99).then(response => {
+      debugger;
+    });
   };
 
   const productsList = products.map((product) => {

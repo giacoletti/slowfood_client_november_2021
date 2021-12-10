@@ -10,7 +10,14 @@ const Orders = {
 
   async update(product_id, order_id) {
     const { data } = await api.put(`/orders/${order_id}`, {
-      order: { product_id: product_id, order_id: order_id }
+      order: { product_id: product_id }
+    });
+    return data;
+  },
+
+  async updateStatus(status, order_id) {
+    const { data } = await api.put(`/orders/${order_id}`, {
+      order: { status: status }
     });
     return data;
   }

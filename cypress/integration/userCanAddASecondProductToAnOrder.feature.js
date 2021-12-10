@@ -10,7 +10,7 @@ describe('Clicking on a "Add to Order" button for a second product', () => {
       fixture: 'orderCreateResponse.json'
     }).as('Orders.create');
 
-    cy.intercept('PUT', '**/api/orders', {
+    cy.intercept('PUT', '**/api/orders/**', {
       fixture: 'orderUpdateResponse.json'
     }).as('Orders.update');
     cy.visit('/');

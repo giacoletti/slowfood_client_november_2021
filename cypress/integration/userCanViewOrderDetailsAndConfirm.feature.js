@@ -26,4 +26,12 @@ describe('Clicking on "View Order"', () => {
     cy.get('[data-cy=product-list]').should('not.exist');
     cy.get('[data-cy=order-details]').should('be.visible');
   });
+
+  it('is expected to display product details', () => {
+    cy.get('[data-cy=order-products]').children().should('have.length', 2);
+  });
+
+  it('is expected to display order total', () => {
+    cy.get('[data-cy=order-total]').should('contain.text', '40 kr');
+  });
 });

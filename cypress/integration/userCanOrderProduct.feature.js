@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-describe("", () => {
+describe('Clicking "Add to order" button for a specific product', () => {
   before(() => {
     cy.intercept("GET", "**/api/products", { fixture: "products.json" });
     cy.intercept("POST", "**/api/orders", {

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Products from './modules/Products';
 import Orders from './modules/Orders';
+import OrderDetails from './components/OrderDetails';
 
 const App = () => {
   const [products, setProducts] = useState([]);
   const [message, setMessage] = useState();
   const [order, setOrder] = useState();
+  const [viewOrder, setViewOrder] = useState(false);
 
   useEffect(() => {
     Products.index().then(data => {
@@ -39,10 +41,15 @@ const App = () => {
   return (
     <>
       <h1>Slowfood</h1>
+      {order && <button data-cy="view-order" onClick={() => setViewOrder(!viewOrder)}>
+        {viewOrder ? "Hide Order" : "View Order"}
+      </button>}
       <h3 data-cy="message-box">{message}</h3>
-      <div data-cy="product-list">
-        {productsList}
-      </div>
+      {viewOrder ? (
+        <OrderDetails order={order} />
+      ) : (
+        <div data-cy="product-list">{productsList}</div>
+      )}
     </>
   );
 };

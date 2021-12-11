@@ -2,9 +2,9 @@
 
 describe("A user that visits the application", () => {
   before(() => {
-    cy.intercept("GET", "**/api/products", { fixture: "products.json" }).as(
-      "Products.index"
-    );
+    cy.intercept("GET", "**/api/products", {
+      fixture: "productsIndexResponse.json",
+    }).as("Products.index");
     cy.visit("/");
   });
 

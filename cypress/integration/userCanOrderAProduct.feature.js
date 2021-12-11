@@ -12,7 +12,7 @@ describe('Clicking "Add to order" button for a specific product', () => {
       .children()
       .first()
       .within(() => {
-        cy.get("button").click();
+        cy.get("[data-cy=add-to-order-button]").click();
       });
   });
 

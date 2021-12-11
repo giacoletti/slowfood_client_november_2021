@@ -2,9 +2,9 @@
 
 describe("A user that visits the application", () => {
   before(() => {
-    cy.intercept("GET", "**/api/products", { fixture: "products.json" }).as(
-      "Products.index"
-    );
+    cy.intercept("GET", "**/api/products", {
+      fixture: "productsIndexResponse.json",
+    }).as("Products.index");
     cy.visit("/");
   });
 
@@ -25,6 +25,6 @@ describe("A user that visits the application", () => {
   });
 
   it("is expected to have a button to add product to the order ", () => {
-    cy.get("[data-cy=button_select]").first().should("contain", "Add to Order");
+    cy.get("[data-cy=add-to-order-button]").first().should("contain", "Add to Order");
   });
 });

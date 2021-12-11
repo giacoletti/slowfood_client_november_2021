@@ -20,7 +20,7 @@ describe('Clicking "Add to order" button for a specific product', () => {
     cy.wait("@Orders.create").its("request.method").should("eq", "POST");
   });
 
-  it.only("is expected to respond with a message", () => {
+  it("is expected to respond with a message", () => {
     cy.get("[data-cy=message-box]").should(
       "contain.text",
       "Pizza was added to your order!"

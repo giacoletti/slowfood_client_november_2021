@@ -7,6 +7,13 @@ const Orders = {
     });
     return data;
   },
-};
+
+  async update(product_id, order_id) {
+    const { data } = await api.put(`/orders/${order_id}`, {
+      order: { product_id: product_id }
+    });
+    return data;
+  }
+}
 
 export default Orders;

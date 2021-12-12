@@ -6,6 +6,7 @@ const App = () => {
   const [products, setProducts] = useState([]);
   const [order, setOrder] = useState();
   const [message, setMessage] = useState();
+  const [viewOrder, setViewOrder] = useState(false);
 
   useEffect(() => {
     Products.index().then((data) => {
@@ -44,8 +45,13 @@ const App = () => {
   return (
     <>
       <h1>Slowfood</h1>
+      {order && <button data-cy="view-order" onClick={() => setViewOrder(!viewOrder)}>
+        {viewOrder ? "Hide Order" : "View Order"}
+      </button>}
       <h3 data-cy="message-box">{message}</h3>
-      <div data-cy="product-list">{productsList}</div>
+      {viewOrder ?
+        <h3 data-cy="order-details">Order details here</h3> :
+        <div data-cy="product-list">{productsList}</div>}
     </>
   );
 };

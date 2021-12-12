@@ -31,7 +31,7 @@ const App = () => {
 
   const productsList = products.map((product) => {
     return (
-      <div key={products.id}>
+      <div key={product.id}>
         {product.name} - {`${product.price} kr `}
         <button
           data-cy="add-to-order-button"

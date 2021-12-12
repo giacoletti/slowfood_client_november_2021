@@ -1,5 +1,4 @@
 describe('A user clicking on "View Order"', () => {
-
   before(() => {
     cy.intercept("GET", "**/api/products", {
       fixture: "productsIndexResponse.json",
@@ -10,20 +9,30 @@ describe('A user clicking on "View Order"', () => {
     cy.intercept("PUT", "**/api/orders/**", {
       fixture: "orderUpdateResponse.json",
     });
-    cy.visit('/');
+    cy.visit("/");
 
-    cy.get("[data-cy=product-list]").children().first().within(() => {
-      cy.get("[data-cy=add-to-order-button]").click();
-    });
-    cy.get("[data-cy=product-list]").children().last().within(() => {
-      cy.get("[data-cy=add-to-order-button]").click();
-    });
+    cy.get("[data-cy=product-list]")
+      .children()
+      .first()
+      .within(() => {
+        cy.get("[data-cy=add-to-order-button]").click();
+      });
+    cy.get("[data-cy=product-list]")
+      .children()
+      .last()
+      .within(() => {
+        cy.get("[data-cy=add-to-order-button]").click();
+      });
 
-    cy.get('[data-cy=view-order]').click();
+    cy.get("[data-cy=view-order]").click();
   });
 
-  it('is expected to display order details and hide product list', () => {
-    cy.get('[data-cy=product-list]').should('not.exist');
-    cy.get('[data-cy=order-details]').should('be.visible');
+  it("is expected to display order details and hide product list", () => {
+    cy.get("[data-cy=product-list]").should("not.exist");
+    cy.get("[data-cy=order-details]").should("be.visible");
+  });
+
+  it("is expected to display product details", () => {
+    cy.get("[data-cy=order-products]").children().should("have.length", 2);
   });
 });

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Products from "./modules/Products";
 import Orders from "./modules/Orders";
 import OrderDetails from "./components/OrderDetails";
+import ProductsListItem from "./components/ProductsListItem";
+import { Container, List, Divider } from '@mui/material';
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -31,15 +33,13 @@ const App = () => {
 
   const productsList = products.map((product) => {
     return (
-      <div key={product.id}>
-        {product.name} - {`${product.price} kr `}
-        <button
-          data-cy="add-to-order-button"
-          onClick={() => addToOrder(product.id)}
-        >
-          Add to Order
-        </button>
-      </div>
+      <>
+        <ProductsListItem
+          product={product}
+          addToOrder={addToOrder}
+        />
+        <Divider variant="inset" component="li" />
+      </>
     );
   });
 
@@ -55,7 +55,11 @@ const App = () => {
       {viewOrder ? (
         <OrderDetails order={order} />
       ) : (
-        <div data-cy="product-list">{productsList}</div>
+        <List
+          data-cy="product-list"
+          sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+          {productsList}
+        </List>
       )}
     </>
   );
